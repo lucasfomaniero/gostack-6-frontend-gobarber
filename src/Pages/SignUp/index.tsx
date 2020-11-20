@@ -19,6 +19,7 @@ interface UserData {
 const SignUp: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
     const [user, setUser] = useState<UserData | null>(null);
+
     const handleSubmit = useCallback(async (data: UserData) => {
         formRef.current?.setErrors({});
         try {
