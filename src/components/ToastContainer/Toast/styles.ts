@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-
+import { animated } from 'react-spring';
 // eslint-disable-next-line no-shadow
 export enum ToastType {
     info = 'info',
@@ -27,15 +27,7 @@ const toastType = {
     `,
 };
 
-export const Container = styled.div`
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 16px 16px 16px 16px;
-    overflow: hidden;
-`;
-
-export const ToastContent = styled.div<ToastProps>`
+export const ToastContent = styled(animated.div)<ToastProps>`
     width: 360px;
     display: flex;
     position: relative;

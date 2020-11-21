@@ -11,7 +11,7 @@ import Input from '../../components/Input';
 import { useAuth } from '../../hooks/auth';
 import { useToast } from '../../hooks/toast';
 import getErrorsValidation from '../../utils/getErrorsValidation';
-import { ToastType } from '../../components/Toast/styles';
+import { ToastType } from '../../components/ToastContainer/Toast/styles';
 
 interface LoginData {
     email: string;
@@ -20,8 +20,8 @@ interface LoginData {
 
 const SignIn: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
-    const { user, signIn } = useAuth();
-    const { addToast, removeToast } = useToast();
+    const { signIn } = useAuth();
+    const { addToast } = useToast();
     const history = useHistory();
     const handleOnSubmit = useCallback(
         async (data: LoginData) => {
@@ -42,16 +42,17 @@ const SignIn: React.FC = () => {
                 if (err instanceof Yup.ValidationError) {
                     const errors = getErrorsValidation(err);
                     formRef.current?.setErrors(errors);
+                    return;
                 }
                 addToast({
                     title: 'Erro na autenticação',
                     description:
-                        'Ocorreu um erro na autenticação. Cheque as credenciais.',
+                        'Ocorreu um erro na autenticação. Tente novamente.',
                     type: ToastType.error,
                 });
             }
         },
-        [signIn, addToast],
+        [signIn, addToast, history],
     );
     return (
         <>
