@@ -37,7 +37,11 @@ const SignIn: React.FC = () => {
                     abortEarly: false,
                 });
                 await signIn(data.email, data.password);
-                history.push('/signup');
+                addToast({
+                    title: 'Login efetuado com sucesso!',
+                    type: ToastType.success,
+                });
+                history.push('/dashboard');
             } catch (err) {
                 if (err instanceof Yup.ValidationError) {
                     const errors = getErrorsValidation(err);
