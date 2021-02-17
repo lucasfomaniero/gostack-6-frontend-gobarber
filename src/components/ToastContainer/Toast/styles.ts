@@ -9,7 +9,7 @@ export enum ToastType {
 
 interface ToastProps {
     color: ToastType;
-    hasDescription: boolean;
+    hasDescription: number;
 }
 
 const toastType = {
