@@ -27,7 +27,6 @@ const ForgotPassword: React.FC = () => {
             setLoading(true);
             formRef.current?.setErrors({});
             try {
-                console.log(data.email);
                 const schema = Yup.object().shape({
                     email: Yup.string()
                         .required('O e-mail é obrigatório')
